@@ -1,0 +1,11 @@
+Criar um componente, para a questão e as respostas. 
+
+Na tela de questões, ele vai renderizar todas as perguntas que o usuário escolheu, passando para o Contexto a quantidade.
+
+No final, ele vai renderizar a quantidade de acertos e erros, e a quantidade de questões que o usuário respondeu.
+
+Quando o usuário terminar de responder as perguntas, ele vai salvar tudo no Local Storage, e na tela de resultados, ele vai 
+pegar os dados do local storage e renderizar na tela.
+
+Depois disso, na primeira tela, ele vai verificar se tem algo no Storage, se sim, ele vai renderizar um botão para o usuário ver 
+seus resultados.

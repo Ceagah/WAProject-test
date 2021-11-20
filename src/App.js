@@ -1,4 +1,6 @@
+import Main from './screens/Main'
+
 function App() {
-  return <h1> Teste</h1>
+  return <Main />
 };
 export default App;
