@@ -1,22 +1,26 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField'; 
 import RealButton from '../../components/Button'
-import {Container, Content, Header, Title, Text, Form} from './styles';
+import { Container, Content, Header, Title, Text, Form, ButtonsContainer} from './styles';
 
 export default function Main() {
   const [isQuestion, setIsQuestion] = useState('');
+  const [isStored, setIsStored] = useState();
   const history = useHistory();
+
+
+  useEffect(() => { 
+    localStorage.getItem('@report') ? setIsStored(true) : setIsStored(false);
+  },[]);
 
   const CheckQuestion = () => {
     if(isQuestion < 1){
       alert('Please, choose a number grater than zero, to start');
     }
     else{
-      console.log('TENTANDO NAVEGAR PARA QUESTIONS')
-      history.push('/confirmation',{ // push to the next page
-        question: isQuestion
-      });
+      localStorage.setItem('@numQuestions', isQuestion);
+      history.push('/confirmation');
     }
   }
   return (
@@ -42,7 +46,10 @@ export default function Main() {
               shrink: true,
             }}
           />
-          <RealButton onClick={CheckQuestion} text="Start" />
+          <ButtonsContainer>
+            <RealButton onClick={CheckQuestion} text="Start" color="primary" />
+            {isStored ? <RealButton onClick={() => history.push('/reports')} text="Go to Reports" color="success"/> : null}
+          </ButtonsContainer>
         </Form> 
       </Content>
     </Container>

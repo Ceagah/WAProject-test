@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Container , Content, Title, Header, ButtonsContainer} from './styles'
+import QuestionContainer from '../../components/QuestionContainer'
+import RealButton from '../../components/Button/';
 
-export default function Questions(props) {
-  const numberOfQuestions = props.location.state.question;;
-  console.log(numberOfQuestions);
-  
+
+export default function Questions() {
+  const sendRequest = () => { 
+    console.log('sendRequest');
+  }
   return (
-    <div>
-      <h1> Questions Screen</h1>
-    </div>
+    <Container>
+      <Content>
+        <Header>
+          <Title></Title>
+        </Header>
+        <QuestionContainer />
+        <ButtonsContainer>
+          <RealButton color="primary" text="Send Answers" onClick={() => sendRequest()}/>
+        </ButtonsContainer>
+      </Content>
+    </Container>
   )
 }
