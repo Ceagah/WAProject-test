@@ -5,9 +5,5 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const Questions = styled.div``;
-export const QuestionCategory = styled.h1``;
-export const QuestionDifficulty = styled.h2``;
-export const QuestionText = styled.p``;
-export const AnswerContainer = styled.div``;
+
 

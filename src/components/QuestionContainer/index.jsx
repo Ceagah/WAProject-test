@@ -18,60 +18,73 @@ import RadioGroup from '@mui/material/RadioGroup';
 // Para o laço for, utulizar como parametro de comparação, o numero que está guardado no local Storage. 
 
 export default function QuestionContainer() {
-  const numberOfQuestions = localStorage.getItem('@numQuestions');
   const [questions, setQuestions] = useState([]);
-  const [isMultiple, setIsMultiple] = useState();
-  const [isBoolean, setIsBoolean] = useState();
-  // const [isCorrect, setIsCorrect] = useState();
-  // const [isIncorrect, setIsIncorrect] = useState();
 
 
-  useEffect(() => {
-    console.log(numberOfQuestions)
-    axios.get(`https://opentdb.com/api.php?amount=${numberOfQuestions}`).then(response => {
-      const questions = response.data.results;
-      const questionValues = Object.values(questions);
-      const questionKeys = Object.keys(questions);
-      console.log(questions);
-      return (questionValues, questionKeys);
-    });
-  }, []);
+
+
+
+  const RenderIncorrectAnswer = (key, item) => {
+    console.log('item Render question', item);
+    return (
+      <FormControlLabel 
+      control={<Checkbox defaultChecked />} 
+      label={item.question}
+      value={item.question}
+      onChange={(e) => setIsIncorrect(e.target.value)}
+      />
+    )
+  }
+
+  const RenderCorrectAnswer = (key, item) => {
+    console.log('item Render question', item);
+    return (
+      <FormControlLabel
+        control={<Checkbox defaultChecked />}
+        label={item.question}
+        value={item.question}
+        onChange={(e) => setIsCorrect(e.target.value)}
+      />
+    )
+  }
+
+  const RenderIncorrectAnswers = (item,index ) => {
+    return(
+      <>
+      {questions.map((item, key) => {
+        console.log(item);
+        const values = questions.find(item => item.incorrect_answers);
+        const questionObj = {
+          ...Object.values(values[0]),
+        };
+          return RenderIncorrectAnswer((key = index), questionObj);
+      })}
+      </>
+    )
+  }
+
+
+  const RenderCorrectAnswers = (item, index) => {
+    return (
+      <>
+        {questions.map((item, key) => {
+          console.log(item);
+          const values = questions.find(item => item.incorrect_answers);
+          const questionObj = {
+            ...Object.values(values[0]),
+          };
+          return RenderCorrectAnswer((key = index), questionObj);
+        })}
+      </>
+    )
+  }
 
 
   return (
     <Container>
       <FormGroup>
-      {questions.map(question => (
-        <Questions key={question.question}>
-          <QuestionCategory>{question.category}</QuestionCategory>
-          <QuestionDifficulty>{question.difficulty}</QuestionDifficulty>
-          <QuestionText>{question.question}</QuestionText>
-          <AnswerContainer>
-            {isMultiple === true (
-              <>
-              {question.incorrect_answers.map(answer => (
-                <FormControlLabel control={<Checkbox defaultChecked />} label={answer.incorrect_answer} value={answer.incorrect_answer} />
-              ))}
-              </>
-            )}
-            {isBoolean === true (
-              <RadioGroup
-                aria-label="Answers"
-                name="radio-buttons-group"
-              >
-              {questions.map(answer => (
-                <>
-                <FormControlLabel value={answer.correct_answer} control={<Radio />} label={answer.correct_answer} />
-                <FormControlLabel value={answer.incorrect_answer} control={<Radio />} label={answer.incorrect_answer} />
-                </>
-              ))}
-              </RadioGroup>
-            )}
-
-          </AnswerContainer>
-        </Questions>
-      ))}
-        
+        <RenderCorrectAnswers />
+        <RenderIncorrectAnswers />
       </FormGroup>
     </Container>
 

@@ -48,7 +48,7 @@ export default function Main() {
           />
           <ButtonsContainer>
             <RealButton onClick={CheckQuestion} text="Start" color="primary" />
-            {isStored ? <RealButton onClick={() => history.push('/reports')} text="Go to Reports" color="success"/> : null}
+            {isStored === true ? <RealButton onClick={() => history.push('/reports')} text="Go to Reports" color="success"/> : null}
           </ButtonsContainer>
         </Form> 
       </Content>

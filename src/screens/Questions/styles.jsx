@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(315deg, ${colors.primary}, ${colors.white} 60%);
+  background: #000;
 
 `;
 
@@ -49,8 +49,6 @@ export const Title = styled.h1`
     margin-bottom: 1rem;
   }
 `;
-
-
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,3 +56,9 @@ export const ButtonsContainer = styled.div`
   justify-content: space-around;
   width: 100%;
 `;
+
+export const QuestionsContainer = styled.div``;
+export const QuestionCategory = styled.h1``;
+export const QuestionDifficulty = styled.h2``;
+export const QuestionText = styled.p``;
+export const AnswerContainer = styled.div``;
