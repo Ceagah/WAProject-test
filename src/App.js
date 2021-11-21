@@ -1,7 +1,7 @@
-import Main from './screens/Main'
+import Router from './Routes/routes'
 import './styles/global.css'
 
 function App() {
-  return <Main />
+  return <Router />
 };
 export default App;

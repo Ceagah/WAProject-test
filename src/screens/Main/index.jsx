@@ -1,24 +1,24 @@
 import React,{useState} from 'react'
+import { useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField'; 
 import RealButton from '../../components/Button'
-import RealAlert from '../../components/Alert';
 import {Container, Content, Header, Title, Text, Form} from './styles';
 
 export default function Main() {
   const [isQuestion, setIsQuestion] = useState('');
-  console.log(isQuestion);
+  const history = useHistory();
 
   const CheckQuestion = () => {
     if(isQuestion < 1){
-      return <RealAlert severity="error" title="Error!" message="Please, choose a number grater than zero, to start."/>;
+      alert('Please, choose a number grater than zero, to start');
     }
     else{
-      return <RealAlert severity="success" title="Success!" message="You can start the game."/>
+      console.log('TENTANDO NAVEGAR PARA QUESTIONS')
+      history.push('/confirmation',{ // push to the next page
+        question: isQuestion
+      });
     }
   }
-
-
-
   return (
     <Container>
       <Content>

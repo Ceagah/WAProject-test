@@ -1,32 +1,30 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Confirmation from '../screens/Confirmation'
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+
 import Main from '../screens/Main'
+import Confirmation from '../screens/Confirmation'
 import Questions from '../screens/Questions'
-import Report from '../screens/Report'
+import Reports from '../screens/Reports'
 
 
-export default function Routes() {
+export default function Router() {
   return (
-    <Router> 
+    <BrowserRouter>
       <Switch>
-        <Route path="/confirmation">
-          <Confirmation />
-        </Route>
-        <Route path="/">
-          <Main />
-        </Route>
-        <Route path="/questions">
-          <Questions />
-        </Route>
-        <Route path="/report">
-          <Report />
-        </Route>
+        <Route exact path="/" component={Main} />
+        <Route exact path="/confirmation" component={Confirmation} />
+          <Route
+            exact
+            path="/questions"
+            component={Questions}
+          />
+          <Route
+            exact
+            path="/reports"
+            component={Reports}
+          />
       </Switch>
-    </Router>
+    </BrowserRouter>
   )
 }
