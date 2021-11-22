@@ -1,4 +1,5 @@
 import React from 'react'
+import {unescapeHTML} from '../../utils'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,13 +16,14 @@ import {
 } from './styles';
 
 export default function Question({ item, handleAnswer} ) {
+  
   return (
     <Box sx={{ maxWidth: '100%', minWidth: '100%', marginTop: 1,}}>
       <Card variant="outlined">
       <CardContent>
           <QuestionCategory>{item.category}</QuestionCategory>
           <QuestionDifficulty>{item.difficulty}</QuestionDifficulty>
-          <QuestionText>{item.question}</QuestionText>
+          <QuestionText>{unescapeHTML(item.question)}</QuestionText>
           <CardActions>
               <FormControl component="fieldset">
                 <RadioGroup
@@ -36,7 +38,7 @@ export default function Question({ item, handleAnswer} ) {
                         <FormControlLabel
                           value={answer}
                           control={<Radio />}
-                          label={answer} />
+                            label={unescapeHTML(answer)} />
                       );
                     })}
                   </RadioGroup>
