@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import colors from '../../styles/themes'
 
 export const Container = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
   background: #000;
 
 `;
@@ -18,7 +18,7 @@ export const Content = styled.main`
   align-items: center;
   justify-content: space-around;  
   width: 80%;
-  height: 90%;
+  height: 100%;
   border-radius: 10px;
   border: 1px solid #000;
   background: #fff;
@@ -55,9 +55,16 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  margin: 1rem 0;
 `;
 
-export const QuestionsContainer = styled.div``;
+export const QuestionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y:auto
+`;
 export const QuestionCategory = styled.h1``;
 export const QuestionDifficulty = styled.h2``;
 export const QuestionText = styled.p``;

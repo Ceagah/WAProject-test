@@ -14,13 +14,15 @@ import {
 } from './styles';
 
 export default function Reports() {
-  const [isCorrect, setIsCorrect] = useState('');
-  const [isIncorrect, setIsIncorrect] = useState('');
+  const [isCorrect, setIsCorrect] = useState(0);
+  const [isIncorrect, setIsIncorrect] = useState(0);
+  const [ totalAnswers, setTotalAnswers ] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
-    setIsCorrect(2);
-    setIsIncorrect(1);
+    setIsCorrect(localStorage.getItem('@correctAnswers'));
+    setIsIncorrect(localStorage.getItem('@incorrectAnswers'));
+    setTotalAnswers(localStorage.getItem('@totalAnswers'));
   }, []);
   return (
     <Container>

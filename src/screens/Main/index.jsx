@@ -20,6 +20,9 @@ export default function Main() {
     }
     else{
       localStorage.setItem('@numQuestions', isQuestion);
+      localStorage.removeItem('@incorrectAnswers');
+      localStorage.removeItem('@correctAnswers');
+      localStorage.removeItem('@totalAnswers');
       history.push('/confirmation');
     }
   }
@@ -47,8 +50,8 @@ export default function Main() {
             }}
           />
           <ButtonsContainer>
-            <RealButton onClick={CheckQuestion} text="Start" color="primary" />
             {isStored === true ? <RealButton onClick={() => history.push('/reports')} text="Go to Reports" color="success"/> : null}
+            <RealButton onClick={CheckQuestion} text="Start" color="primary" />
           </ButtonsContainer>
         </Form> 
       </Content>
