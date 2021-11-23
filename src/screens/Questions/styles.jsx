@@ -1,27 +1,26 @@
 import styled from 'styled-components';
-import colors from '../../styles/themes'
+import themes from '../../styles/themes'
+import Container from '@mui/material/Container';
 
-export const Container = styled.div`
+export const Content = styled.main`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  max-height: 100%; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #000;
-
+  background: ${themes.colors.white};
 `;
 
-export const Content = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;  
-  width: 80%;
-  height: 100%;
-  border-radius: 10px;
-  border: 1px solid #000;
-  background: #fff;
+export const FullPageContainer = styled(Container)`
+  && {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Header = styled.div`
@@ -41,7 +40,7 @@ export const Header = styled.div`
 export const Title = styled.h1`
     font-size: 2.1rem;
     margin-bottom: 1.5rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: ${themes.fonts.title};
     font-weight: 700;
 
   @media (max-width: 720px) {
@@ -63,9 +62,6 @@ export const QuestionsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow-y:auto
+  height: 100%;
+  overflow-y:auto;
 `;
-export const QuestionCategory = styled.h1``;
-export const QuestionDifficulty = styled.h2``;
-export const QuestionText = styled.p``;
-export const AnswerContainer = styled.div``;

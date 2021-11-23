@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../styles/themes'
+import themes from '../../styles/themes'
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background: ${themes.colors.white};
 
 `;
 
@@ -20,7 +20,7 @@ export const Content = styled.main`
   width: 80%;
   height: 90%;
   border-radius: 10px;
-  border: 1px solid #000;
+  box-shadow: -6px 6px 6px -1px rgba(0,0,0,0.37);
   background: #fff;
 `;
 
@@ -41,7 +41,7 @@ export const Header = styled.div`
 export const Title = styled.h1`
     font-size: 2.1rem;
     margin-bottom: 1.5rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: ${themes.fonts.title};
     font-weight: 700;
 
   @media (max-width: 720px) {
@@ -56,7 +56,7 @@ export const Text = styled.p`
   justify-content: space-around;
   text-align: center;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${themes.fonts.title};
   line-height: 1.5rem;
   
   @media (max-width: 720px) {

@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background: ${themes.colors.white};
 `;
 
 export const Content = styled.main`
@@ -20,7 +20,7 @@ export const Content = styled.main`
   align-items: center;
   justify-content: space-around;  
   border-radius: 10px;
-  border: 1px solid #000;
+  box-shadow: -6px 6px 6px -1px rgba(0,0,0,0.37);
   background: #FFF;
 
 @media (max-width: 720px) {
@@ -68,7 +68,7 @@ export const Text = styled.p`
   font-size: 1rem;
   width: 90%;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${themes.fonts.title};
 
   @media (max-width: 720px) {
     font-size: .9rem;
@@ -82,7 +82,7 @@ export const Correct = styled.p`
   font-family: 'Roboto', sans-serif; 
   font-size: 1rem;
   font-weight: bold;
-  color: ${themes.green};
+  color: ${themes.colors.green};
   margin: 0;
   padding: 0;
 
@@ -97,7 +97,7 @@ export const Incorrect = styled.p`
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: bold;
-  color: ${themes.red};
+  color: ${themes.colors.red};
   margin: 0;
   padding: 0;
 

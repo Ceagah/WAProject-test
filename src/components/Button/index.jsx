@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 
 export default function RealButton(props) {
   return (
-    <Button variant="contained" color={props.color} onClick={props.onClick}>
+    <Button variant="contained" color={props.color} onClick={props.onClick} disabled={props.disabled}>
       {props.text}
     </Button>
   )

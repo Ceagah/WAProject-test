@@ -32,7 +32,7 @@ export default function Reports() {
       </Header>
         <ImageContainer />
       <Text>
-          You have answered <Correct>{isCorrect} questions correctly</Correct>  and <Incorrect> {isIncorrect} questions incorrectly </Incorrect>        You can answer again anytime you want.<br />
+          You have answered a total of {totalAnswers} questions, <Correct>{isCorrect} questions correctly</Correct>  and <Incorrect> {isIncorrect} questions incorrectly </Incorrect>        You can answer again anytime you want.<br />
         Starting a new quiz, will reset your progress and save another in local storage.
       </Text>
       <ButtonsContainer>

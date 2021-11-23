@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import themes from '../../styles/themes';
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background: ${themes.colors.white};
 `;
 
 export const Content = styled.main`
@@ -18,7 +19,7 @@ export const Content = styled.main`
   width: 80%;
   height: 90%;
   border-radius: 10px;
-  border: 1px solid #000;
+  box-shadow: -6px 6px 6px -1px rgba(0,0,0,0.37);
   background: #FFF;
 
 @media (max-width: 720px) {
@@ -34,7 +35,7 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   height: 20%;
 
@@ -59,6 +60,7 @@ export const Header = styled.div`
 export const Title = styled.h1`
     font-size: 2rem;
     margin-bottom: 1.5rem;
+    text-align: center;
 
   @media (max-width: 720px) {
     font-size: 1.5rem;
@@ -70,6 +72,7 @@ export const Title = styled.h1`
 `;
 export const Text = styled.p`
   font-size: 1rem;
+  text-align: center;
   
   @media (max-width: 720px) {
     font-size: .9rem;

@@ -1,11 +1,10 @@
 export function unescapeHTML(unsafe) {
   return unsafe
-    .replace("&amp;", '&')
-    .replace("&lt;", '<')
-    .replace("&gt;", '>')
-    .replace("&quot;", '"')
-    .replace("&quot;", '"')
-    .replace("&quot;", '"')
-    .replace("&quot;", '"')
-    .replace("&#039;", "'")
-}
+    .replaceAll("&amp;", '&')
+    .replaceAll("&lt;", '<')
+    .replaceAll("&gt;", '>')
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#039;", "'")
+    .replaceAll("&ouml;", "ö")
+    .replaceAll("&ndash;", '/')
+  }

@@ -4,10 +4,10 @@ import axios from 'axios';
 import RealButton from '../../components/Button/';
 import Question from '../../components/QuestionContainer'
 import {
-  Container,
   Content,
   ButtonsContainer,
   QuestionsContainer,
+  FullPageContainer
 } from './styles'
 
 
@@ -15,9 +15,19 @@ export default function Questions() {
   const [questions, setQuestions] = useState([]);
   const [correctIds, setCorrectIds] = useState([]);
   const [incorrectIds, setIncorrectIds] = useState([]);
-
-  const numberOfQuestions = localStorage.getItem('@numQuestions');
+  const [canSendAnswers, setCanSendAnswers] = useState(false);
   const history = useHistory();
+  const numberOfQuestions = localStorage.getItem('@numQuestions');
+
+  useEffect(() => {
+    console.log('correctIds', correctIds.length, 'incorrectIds', incorrectIds.length);
+    if ((correctIds.length + incorrectIds.length) === parseInt(numberOfQuestions)) {
+      setCanSendAnswers(true);
+    } else {
+      setCanSendAnswers(false);
+  }
+  }, [correctIds, incorrectIds, numberOfQuestions]);
+
 
   useEffect( () => {
     axios.get(`https://opentdb.com/api.php?amount=${numberOfQuestions}`).then(response => {
@@ -31,39 +41,41 @@ export default function Questions() {
             }
           })
         });
+        console.log('numero de questões', questions.length)
+
         return questions;
       });
   }, [numberOfQuestions]);
 
   const handleAnswer = (id, correct) => {
-    if (correct) {
-      setCorrectIds(() => {
-        if (incorrectIds.includes(id)){
-          const newIncorrectIds = [...incorrectIds];
-          newIncorrectIds.splice(incorrectIds.indexOf(id), 1);
-          setIncorrectIds(newIncorrectIds);
-        } 
-        if(!correctIds.includes(id)){
-          return [...correctIds, id];
-        } 
-        return correctIds;
-      });
+    if (correct === true) {
+      if (incorrectIds.includes(id)) {
+        const newIncorrectIds = [...incorrectIds];
+        newIncorrectIds.splice(incorrectIds.indexOf(id), 1);
+        setIncorrectIds(newIncorrectIds);
+      }
+      if (!correctIds.includes(id)) {
+        setCorrectIds([...correctIds, id]);
+      }
     } else {
-      setIncorrectIds(() => {
-        if (correctIds.includes(id)) {
-          const newCorrectIds = [...correctIds];
-          correctIds.splice(correctIds.indexOf(id), 1);
-          setCorrectIds(newCorrectIds);
-        }
-        if(!incorrectIds.includes(id)){
-          return [...incorrectIds, id];
-        }
-        return incorrectIds;
-      });
+      if (correctIds.includes(id)) {
+        const newCorrectIds = [...correctIds];
+        newCorrectIds.splice(correctIds.indexOf(id), 1);
+        setCorrectIds(newCorrectIds);
+      }
+      if (!incorrectIds.includes(id)) {
+        setIncorrectIds([...incorrectIds, id]);
+      }
     }
-  }
 
+  //   if ((correctIds.length + incorrectIds.length) === questions.length) {
+  //     setCanSendAnswers(true);
+  //   } else {
+  //     setCanSendAnswers(false);
+  // }
+}
   const sendAnswers = () => { 
+    
     localStorage.setItem('@correctAnswers', correctIds.length);
     localStorage.setItem('@incorrectAnswers', incorrectIds.length);
     localStorage.setItem('@totalAnswers', correctIds.length + incorrectIds.length);
@@ -72,17 +84,18 @@ export default function Questions() {
   }
 
   return (
-    <Container>
-      <Content>
-        <QuestionsContainer>
-          {questions.map(question => (
-            <Question item={question} handleAnswer={handleAnswer}/>
-          ))}
-        </QuestionsContainer>
-        <ButtonsContainer>
-          <RealButton color="primary" text="Send Answers" onClick={sendAnswers}/>
-        </ButtonsContainer>
-      </Content>
-    </Container>
+    <Content>
+      <FullPageContainer>
+          <QuestionsContainer>
+            {questions.map(question => (
+              <Question item={question} handleAnswer={handleAnswer}/>
+            ))}
+          <ButtonsContainer>
+            <RealButton color="primary" text="Send Answers" onClick={sendAnswers} disabled={!canSendAnswers} />
+          </ButtonsContainer>
+          </QuestionsContainer>
+          
+      </FullPageContainer>
+    </Content>
   )
 }
